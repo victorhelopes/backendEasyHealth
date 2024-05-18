@@ -19,7 +19,7 @@ const patientSchema = new mongoose.Schema({
         type: type.String,
         required: true,
     },
-    bithDate: {
+    birthDate: {
         type: type.Date,
         required: true,
     },
@@ -37,30 +37,32 @@ const patientSchema = new mongoose.Schema({
         type: type.String,
     },
     address: {
-        city: {
+        type: {
+            city: {
             type: type.String,
             required: true,
-        },
-        state: {
-            type: type.String,
-            required: true,
-        },
-        number: {
-            type: type.String,
-            required: true,
-        },
-        street: {
-            type: type.String,
-            required: true,
-        },
-        cep: {
-            type: type.String,
-            required: true,
-        },
-        complement: {
-            type: type.String,
-            required: true,
-        },
+            },
+            state: {
+                type: type.String,
+                required: true,
+            },
+            number: {
+                type: type.String,
+                required: true,
+            },
+            street: {
+                type: type.String,
+                required: true,
+            },
+            cep: {
+                type: type.String,
+                required: true,
+            },
+            complement: {
+                type: type.String,
+                required: true,
+            },
+        }
     },
     responsible: [{
         type: Schema.Types.ObjectId, 

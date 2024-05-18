@@ -1,31 +1,26 @@
+import { IPatient } from '../../@types/patient';
 import Patient from './dtos/patientModel'
-
-interface IAddress {
-    city: string,
-    state: string,
-    number: string,
-    street: string,
-    cep: string,
-    complement: string,
-}
-
-interface IUser {
-    name: string,
-    lastName: string,
-    telephone: string,
-    email: string,
-    bithDate: string,
-    gender: string,
-    maritalStatus: string,
-    disorder: string,
-    address: IAddress,
-    jobTitle?: string,
-    responsible?: IUser,
-}
 
 export default {
     async getAll() {
         const users = await Patient.find();
         return users;
+    },
+    
+    async createPatient({ ...props }: IPatient) {
+        const result = await Patient.create({
+            name: props.name,
+            lastName: props.lastName,
+            telephone: props.telephone,
+            email: props.email,
+            birthDate: props.birthDate,
+            gender: props.gender,
+            disorder: props.disorder,
+            maritalStatus: props.maritalStatus || '',
+            jobTitle: props.jobTitle || '',
+            responsible: props.responsible || [],
+            address: props.address || null,
+        });
+        return result;
     },
 }

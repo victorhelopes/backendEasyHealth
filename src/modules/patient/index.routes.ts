@@ -5,6 +5,7 @@ const PatientRouter = Router();
 
 const userController = new UserController();
 
-PatientRouter.get("/getAllPatients", userController.getAllPatients);
+PatientRouter.get("/getAll", userController.getAllPatients);
+PatientRouter.post("/create", userController.createPatient);
 
 export default PatientRouter;
