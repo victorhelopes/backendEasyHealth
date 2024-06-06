@@ -1,6 +1,7 @@
 import { IAddress } from "./address";
 
 export interface IPatient {
+    _id: string;
     name: string,
     lastName: string,
     telephone: string,

@@ -17,7 +17,6 @@ const patientSchema = new mongoose.Schema({
     },
     email: {
         type: type.String,
-        required: true,
     },
     birthDate: {
         type: type.Date,
@@ -66,8 +65,7 @@ const patientSchema = new mongoose.Schema({
     },
     responsible: [{
         type: Schema.Types.ObjectId, 
-        ref: 'Patient', 
-        required: true
+        ref: 'Patient',
     }]
 })
 
