@@ -3,6 +3,10 @@ import mongoose, { Schema } from 'mongoose';
 const type = mongoose.Schema.Types;
 
 const patientSchema = new mongoose.Schema({
+    cpf: { 
+        type: type.String, 
+        required: true, 
+        unique: true },
     name: {
         type: type.String,
         required: true,
