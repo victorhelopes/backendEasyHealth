@@ -40,4 +40,16 @@ export default class UserController {
       return response.status(500).json({ message: 'Unknown Error.' });
     }
   }
+
+  public async deletePatient(req:Request, response: Response): Promise<Response> {
+    try{
+      const { id } = req.params; 
+      const result = await Service.deletePatient({ _id: id })
+      return response.json(result);
+  }catch(e){
+    if (e instanceof Error)
+      return response.status(500).json({ message: e.message });
+    return response.status(500).json({ message: 'Unknown Error.' });
+  }
+  }
 }

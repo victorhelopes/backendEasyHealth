@@ -4,5 +4,5 @@ export interface IAddress {
     number: string,
     street: string,
     cep: string,
-    complement: string,
+    complement?: string,
 }

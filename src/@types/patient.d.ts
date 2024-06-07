@@ -12,5 +12,5 @@ export interface IPatient {
     maritalStatus?: string,
     jobTitle?: string,
     address?: IAddress,
-    responsible?: IPatient[],
+    responsibles?: IPatient[],
 }

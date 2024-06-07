@@ -8,5 +8,6 @@ const userController = new UserController();
 PatientRouter.get("/getAll", userController.getAllPatients);
 PatientRouter.post("/create", userController.createPatient);
 PatientRouter.put("/update/:id", userController.updatePatient);
+PatientRouter.delete("/delete/:id", userController.deletePatient);
 
 export default PatientRouter;

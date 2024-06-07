@@ -59,14 +59,15 @@ const patientSchema = new mongoose.Schema({
             },
             complement: {
                 type: type.String,
-                required: true,
             },
         }
     },
-    responsible: [{
+    responsibles: [{
         type: Schema.Types.ObjectId, 
         ref: 'Patient',
     }]
+},{
+    timestamps: true 
 })
 
 export default mongoose.model('Patient', patientSchema);
