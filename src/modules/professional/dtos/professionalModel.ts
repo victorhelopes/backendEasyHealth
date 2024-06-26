@@ -24,6 +24,7 @@ const professionalSchema = new mongoose.Schema({
     },
     gender: {
         type: type.String,
+        enum: ["M", "F", "other"]
     },
 },{
     timestamps: true 

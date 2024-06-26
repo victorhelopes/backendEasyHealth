@@ -6,5 +6,6 @@ const ProfessionalRouter = Router();
 const professionalController = new ProfessionalController();
 
 ProfessionalRouter.get("/getAll", professionalController.getAllProfessionals);
+ProfessionalRouter.post("/create", professionalController.createProfessional);
 
 export default ProfessionalRouter;
