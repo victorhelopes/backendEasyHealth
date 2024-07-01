@@ -26,6 +26,10 @@ const professionalSchema = new mongoose.Schema({
         type: type.String,
         enum: ["M", "F", "other"]
     },
+    isActive: {
+        type: type.Boolean,
+        required: true
+    }
 },{
     timestamps: true 
 })

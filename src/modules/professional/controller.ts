@@ -26,4 +26,16 @@ export default class ProfessionalController {
       return response.status(500).json({ message: 'Unknown Error.' });
     }
   }
+
+  public async desactiveProfessional(req: Request, response: Response): Promise<Response>{
+    try{
+      const { id } = req.params; 
+      const result = await Service.desactiveProfessional(id)
+      return response.json(result);
+    }catch(e){
+      if (e instanceof Error)
+        return response.status(500).json({ message: e.message });
+      return response.status(500).json({ message: 'Unknown Error.' });
+    }
+  }
 }

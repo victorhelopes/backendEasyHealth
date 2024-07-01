@@ -4,5 +4,6 @@ export interface IProfessional{
     email: string,
     password:string,
     telephone: string
+    isActive: boolean,
     gender: 'F' | 'M' | 'other'
 }
