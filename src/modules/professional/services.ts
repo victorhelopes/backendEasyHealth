@@ -19,6 +19,21 @@ export default {
         return result;
     },
 
+    async updateProfessional({ data, _id}: {data: IProfessional, _id: string}){
+        const body  = {
+            name: data.name,
+            lastName: data.lastName,
+            email: data.email,
+            telephone: data.telephone,
+            gender: data.gender,
+        }
+
+        const result = await Professional.findByIdAndUpdate({ _id: _id},{
+            ...body,
+        });
+        return result;  
+    },
+
     async desactiveProfessional(_id: string){
         const result = await Professional.updateOne({_id}, {isActive: false})
         return result;
