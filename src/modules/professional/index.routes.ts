@@ -6,7 +6,10 @@ const ProfessionalRouter = Router();
 const professionalController = new ProfessionalController();
 
 ProfessionalRouter.get("/getAll", professionalController.getAllProfessionals);
+
+ProfessionalRouter.post("/login", professionalController.login);
 ProfessionalRouter.post("/create", professionalController.createProfessional);
+
 ProfessionalRouter.put("/desactive/:id", professionalController.desactiveProfessional);
 ProfessionalRouter.put("/update/:id", professionalController.updateProfessional);
 

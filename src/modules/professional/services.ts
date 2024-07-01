@@ -9,6 +9,11 @@ export default {
         return professionals;
     },
 
+    async findByEmail(email: string){
+        const professional = await Professional.findOne({email: email})
+        return professional;
+    },
+
     async createProfessional({ ...props }: IProfessional){
         const salt = await bcrypt.genSalt(10);        
         props.password = await bcrypt.hash(props.password, salt);
