@@ -2,10 +2,36 @@ import bcrypt from 'bcryptjs'
 
 import { IProfessional } from '../../@types/professional';
 import Professional from './dtos/professionalModel'
+import { IGender } from '../../@types/gender';
 
 export default {
     async getAll() {
         const professionals = await Professional.find()
+        return professionals;
+    },
+    
+    async findByNameOrGenderOrIsActive(
+        {...props }: {
+            name?: string, 
+            isActive?: boolean, 
+            gender?: IGender["gender"]
+        }
+    ) {
+        const filter: { [key: string]: any } = {};
+
+        if (props.name) {
+            filter.name = { $regex: props.name, $options: 'i' }
+        }
+
+        if (props.isActive) {
+            filter.isActive = props.isActive;
+        }
+
+        if (props.gender) {
+            filter.gender = props.gender;
+        }
+
+        const professionals = await Professional.find(filter)
         return professionals;
     },
 
