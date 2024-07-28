@@ -87,7 +87,13 @@ export default class ProfessionalController {
     }
     
     if(process.env.JWT_SECRET_KEY){
-      const token = await jwt.sign({ email: email }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+      const professionalInfos = {
+        name: professional.name,
+        lastName: professional.lastName,
+        id: professional._id
+      }
+
+      const token = await jwt.sign(professionalInfos, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
       response.send({ token });
     }
   }
