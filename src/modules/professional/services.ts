@@ -5,6 +5,16 @@ import Professional from './dtos/professionalModel'
 import { IGender } from '../../@types/gender';
 
 export default {
+    async GetProfesionalInformation(id: string){
+        const professional = await Professional.findById(id)
+        const information = {
+            name: professional?.name,
+            lastname: professional?.lastName,
+            telephone: professional?.telephone
+        }
+        return information;
+    },
+
     async getAll() {
         const professionals = await Professional.find()
         return professionals;

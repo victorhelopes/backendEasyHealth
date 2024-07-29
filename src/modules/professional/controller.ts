@@ -7,8 +7,21 @@ import { IProfessional } from '../../@types/professional';
 import { IGender } from '../../@types/gender';
 
 import Service from './services'
+import { AuthenticatedRequest } from '../../middleware/auth';
 
 export default class ProfessionalController {
+  public async getProfessionalLoggedInformation(request: AuthenticatedRequest, response: Response): Promise<Response>{
+    try{
+      const id = request.user?.id || '';
+      const result = await Service.GetProfesionalInformation(id);
+      return response.json(result);
+    }catch(e){
+      if (e instanceof Error)
+        return response.status(500).json({ message: e.message });
+      return response.status(500).json({ message: 'Unknown Error.' });
+    }
+  }
+
   public async getAllProfessionals(_: Request, response: Response): Promise<Response> {
     try{
       const result = await Service.getAll();

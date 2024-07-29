@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import ProfessionalController from './controller';
+import { authenticateToken } from '../../middleware/auth';
 ProfessionalController
 const ProfessionalRouter = Router();
 
 const professionalController = new ProfessionalController();
+
+ProfessionalRouter.get("/me", authenticateToken, professionalController.getProfessionalLoggedInformation);
 
 ProfessionalRouter.get("/getAll", professionalController.getAllProfessionals);
 ProfessionalRouter.get("/getProfessionals", professionalController.getProfessionals);
