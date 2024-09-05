@@ -3,6 +3,6 @@ export interface IAddress {
     state: string,
     number: string,
     street: string,
-    cep: string,
+    zipCode: string,
     complement?: string,
 }

@@ -14,14 +14,21 @@ export default {
             throw new Error('Paciente não encontrado');
         }
 
-        props.patient = patient.id
+        const relation = await patientProfessionalModel.findOne().where({
+            professional: props.professional,
+            patient: patient._id,
+        })
 
-        const result = await patientProfessionalModel.create({
-            ...props,
-        });
+        if(!relation){
+            props.patient = patient.id
 
-        console.log(result)
-        return result;
+            const result = await patientProfessionalModel.create({
+                ...props,
+            });
+            return result;
+        }
+        throw new Error('Paciente já possui relação com profissional');
+
         
     },
 

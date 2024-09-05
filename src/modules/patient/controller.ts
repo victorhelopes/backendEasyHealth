@@ -3,6 +3,8 @@ import { Request, Response } from 'express';
 import { IPatient } from '../../@types/patient';
 
 import Service from './services'
+import PatientProfessionalServices from '../patientProfessional/services'
+import { AuthenticatedRequest } from '../../middleware/auth';
 
 export default class UserController {
   public async getAllPatients(_: Request, response: Response): Promise<Response> {
@@ -28,11 +30,20 @@ export default class UserController {
     }
   }
 
-  public async createPatient(req: Request, response: Response): Promise<Response> {
+  public async createPatient(req: AuthenticatedRequest, response: Response): Promise<Response> {
     try{
-      const body: IPatient = req.body;
-      const result = await Service.createPatient(body)
-      return response.json(result);
+        const professionalId = req.user?.id || '';
+        const body: IPatient = req.body;
+        const result = await Service.createPatient(body)
+        const patientProfessional = {
+          professional: professionalId,
+          patient: result.cpf,
+          isActive: true,
+      }
+  
+      const realtion = await PatientProfessionalServices.createPatientProfessional(patientProfessional)
+
+      return response.json( {patient: result, realtion: realtion} );
     }catch(e){
       if (e instanceof Error)
         return response.status(500).json({ message: e.message });

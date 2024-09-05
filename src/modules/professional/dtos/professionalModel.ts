@@ -1,37 +1,41 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
 const type = mongoose.Schema.Types;
 
-const professionalSchema = new mongoose.Schema({
+const professionalSchema = new mongoose.Schema(
+  {
     name: {
-        type: type.String,
-        required: true,
+      type: type.String,
+      required: true,
     },
     lastName: {
-        type: type.String,
-        required: true,        
+      type: type.String,
+      required: true,
     },
     email: {
-        type: type.String,
-        required: true,
+      type: type.String,
+      required: true,
+      unique: true,
     },
-    password:{
-        type: type.String,
-        required: true,
+    password: {
+      type: type.String,
+      required: true,
     },
     telephone: {
-        type: type.String,
+      type: type.String,
     },
     gender: {
-        type: type.String,
-        enum: ["M", "F", "other"]
+      type: type.String,
+      enum: ["M", "F", "other"],
     },
     isActive: {
-        type: type.Boolean,
-        required: true
-    }
-},{
-    timestamps: true 
-})
+      type: type.Boolean,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export default mongoose.model('Professional', professionalSchema);
+export default mongoose.model("Professional", professionalSchema);

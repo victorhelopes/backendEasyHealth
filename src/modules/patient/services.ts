@@ -30,6 +30,12 @@ export default {
             }))
         }
 
+        const user = await this.getByCPF(props.cpf)
+
+        if(user){
+            return user;
+        }
+
         const result = await Patient.create({
             ...props,
             responsibles: responsibles,

@@ -6,7 +6,8 @@ const patientSchema = new mongoose.Schema({
     cpf: { 
         type: type.String, 
         required: true, 
-        unique: true },
+        unique: true 
+    },
     name: {
         type: type.String,
         required: true,
@@ -57,7 +58,7 @@ const patientSchema = new mongoose.Schema({
                 type: type.String,
                 required: true,
             },
-            cep: {
+            zipCode: {
                 type: type.String,
                 required: true,
             },

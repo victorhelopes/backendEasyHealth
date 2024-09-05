@@ -51,6 +51,11 @@ export default {
     },
 
     async createProfessional({ ...props }: IProfessional){
+        const professional = await this.findByEmail(props.email)
+        if(professional){
+            throw new Error('Profissional já cadastrado com este email')
+        }
+
         const salt = await bcrypt.genSalt(10);        
         props.password = await bcrypt.hash(props.password, salt);
         props.isActive = true
